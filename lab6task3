@@ -1,0 +1,33 @@
+.data
+input: .asciiz "ENTER TWO NUMBERS FOR DIVISION \n"
+output: .asciiz "\tRESULT \n"
+output1: .asciiz "\nQUOTIENT IS "
+output2: .asciiz "\nREMAINDER IS "
+.text
+la $a0,input
+li $v0,4
+syscall
+li $v0,5
+syscall
+move $t0,$v0
+li $v0,5
+syscall
+move $t1,$v0
+la $a0,output
+li $v0,4
+syscall
+div $t2,$t0,$t1
+la $a0,output1
+li $v0,4
+syscall
+mflo $t4
+move $a0,$t4
+li $v0,1
+syscall
+la $a0,output2
+li $v0,4
+syscall
+mfhi $t3
+move $a0,$t3
+li $v0,1
+syscall
