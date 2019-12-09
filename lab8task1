@@ -1,0 +1,39 @@
+.data
+ display :.asciiz "\n\tPROGRAM FOR CHECKING WHETHER RESULT IS EVEN OR ODD\n"
+ input :.asciiz "\nENTER ANY INTEGER: "
+ even : .asciiz"\n\tRESULT IS EVEN\n"
+ odd : .asciiz"\n\tRESULT IS ODD\n"
+ multiply : .asciiz "MULTIPLYING THE INTEGER WITH 3: "
+.text
+la, $a0, display
+li, $v0, 4
+syscall
+la, $a0, input
+li, $v0, 4
+syscall
+li, $v0, 5
+syscall
+move $t0, $v0
+li, $t1, 3
+la, $a0, multiply
+li, $v0, 4
+syscall
+mul $t0, $t0, $t1
+move $a0 , $t0,
+li $v0, 1
+syscall
+li, $t1, 2
+div $t2,$t0,$t1
+mfhi, $t3
+beq $t3, $zero, evenn 
+la $a0, odd
+li $v0,4
+syscall
+li $v0,10
+syscall
+evenn:
+la $a0, even
+li $v0,4
+syscall
+li $v0,10
+syscall

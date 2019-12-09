@@ -1,0 +1,19 @@
+.data 
+start : .asciiz "\nENTER ANY NUMBER: "
+end : .asciiz "\n\tPROGRAM ENDED!!\n"
+.text 
+la, $a0, start
+li, $v0,4
+syscall
+li, $v0,5
+syscall
+blez $v0,hlt
+move $a0, $v0
+li $v0,1
+syscall
+hlt:
+la, $a0, end
+li, $v0,4
+syscall
+li $v0 ,10
+syscall
